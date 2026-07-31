@@ -1,0 +1,26 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+body {
+  background-color: #161d26;
+  color: #f5f6f7;
+}
+
+/* Decorativo: triángulo angular usado como acento de marca */
+.triangle-accent {
+  clip-path: polygon(50% 0%, 0% 100%, 100% 100%);
+}
+
+/* Respeta la preferencia del sistema de reducir movimiento: apaga
+   animaciones decorativas en vez de forzarlas a todo el mundo. */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
