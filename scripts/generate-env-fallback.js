@@ -24,6 +24,9 @@ const KEYS = [
   "MAIL_FROM",
   "MAIL_CONTACT",
   "ADMIN_EMAILS",
+  "AWS_REGION_OVERRIDE",
+  "SBG_AWS_ACCESS_KEY_ID",
+  "SBG_AWS_SECRET_ACCESS_KEY",
 ];
 
 const values = {};

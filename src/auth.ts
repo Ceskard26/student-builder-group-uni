@@ -14,14 +14,6 @@ export function isAllowedInstitutionalEmail(email: string | null | undefined) {
   return email.toLowerCase().endsWith(`@${ALLOWED_EMAIL_DOMAIN}`);
 }
 
-// DEBUG temporal: confirmar qué ve este módulo al evaluarse en el runtime de Amplify.
-console.log(
-  "[auth.ts debug] AUTH_SECRET present:",
-  typeof process.env.AUTH_SECRET === "string" && process.env.AUTH_SECRET.length > 0,
-  "length:",
-  process.env.AUTH_SECRET?.length ?? 0,
-);
-
 export const { handlers, signIn, signOut, auth } = NextAuth({
   // Auth.js solo confía en el host de la request automáticamente en Vercel.
   // En Amplify (y cualquier otra plataforma detrás de un proxy/CDN) hay que
