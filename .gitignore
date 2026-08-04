@@ -9,3 +9,6 @@ npm-debug.log*
 *.tsbuildinfo
 next-env.d.ts
 .dynamodb-data
+# Generado en build time por scripts/generate-env-fallback.js. Nunca debe
+# commitearse: en Amplify contiene valores reales de variables de entorno.
+src/generated-env-fallback.ts
