@@ -21,6 +21,11 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
   // AUTH_URL ya fija el dominio esperado; esto solo autoriza al servidor a
   // usar el host real de la request entrante.
   trustHost: true,
+  // Se pasa explícito en vez de confiar en la autodetección de
+  // `process.env.AUTH_SECRET`: en el runtime serverless de Amplify esa
+  // autodetección fallaba de forma intermitente ("MissingSecret") aunque
+  // la variable de entorno sí estaba configurada.
+  secret: process.env.AUTH_SECRET,
   providers: [
     Google({
       authorization: {
