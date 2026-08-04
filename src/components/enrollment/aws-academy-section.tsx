@@ -17,7 +17,7 @@ function InfoMessage({
   children: React.ReactNode;
 }) {
   return (
-    <div className="relative flex min-h-[70vh] items-center overflow-hidden px-6 text-center text-neutral-200">
+    <div className="relative flex flex-1 items-center overflow-hidden px-6 text-center text-neutral-200">
       <GradientBlobs />
       <div className="relative mx-auto max-w-xl animate-fade-in-up">
         <Icon name={icon} className="mx-auto mb-6 h-12 w-12 text-brand-blue" />
@@ -69,7 +69,7 @@ export function AwsAcademySection({
       );
     }
     return (
-      <div className="relative min-h-[70vh] overflow-hidden px-6 py-16">
+      <div className="relative flex-1 overflow-hidden px-6 py-16">
         <GradientBlobs />
         <div className="relative mx-auto max-w-xl animate-fade-in-up">
           <div className="mb-2 flex items-center gap-3">

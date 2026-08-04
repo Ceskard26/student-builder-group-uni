@@ -44,7 +44,7 @@ export default function RootLayout({
         className={`${emberDisplay.variable} ${emberMono.variable} font-sans min-h-screen flex flex-col bg-bg`}
       >
         <SiteHeader />
-        <main className="flex-1">{children}</main>
+        <main className="flex flex-1 flex-col">{children}</main>
         <SiteFooter />
       </body>
     </html>
