@@ -22,6 +22,11 @@ export async function GET() {
     hasAuthUrl: typeof process.env.AUTH_URL === "string",
     authUrl: process.env.AUTH_URL ?? null,
     hasGoogleId: typeof process.env.AUTH_GOOGLE_ID === "string" && process.env.AUTH_GOOGLE_ID.length > 0,
+    // Variables no-AUTH_ para comparar: ¿es solo AUTH_* o todas faltan?
+    cohortId: process.env.COHORT_ID ?? null,
+    dynamoTable: process.env.DYNAMODB_TABLE_NAME ?? null,
+    adminEmails: process.env.ADMIN_EMAILS ?? null,
+    allowedDomain: process.env.ALLOWED_EMAIL_DOMAIN ?? null,
     nodeEnv: process.env.NODE_ENV,
     authCallResult,
   });
