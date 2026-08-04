@@ -21,7 +21,9 @@ const explicitCredentials =
     : undefined;
 
 const client = new DynamoDBClient({
-  region: process.env.AWS_REGION_OVERRIDE ?? process.env.AWS_REGION ?? "us-east-1",
+  // Amplify no permite variables de entorno custom que empiecen con "AWS_"
+  // (prefijo reservado), por eso SBG_AWS_REGION en vez de AWS_REGION_OVERRIDE.
+  region: process.env.SBG_AWS_REGION ?? process.env.AWS_REGION ?? "us-east-1",
   ...(explicitCredentials ? { credentials: explicitCredentials } : {}),
   ...(process.env.DYNAMODB_ENDPOINT
     ? { endpoint: process.env.DYNAMODB_ENDPOINT }
