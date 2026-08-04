@@ -25,7 +25,7 @@ const ACTIVITIES = [
 
 export default function NosotrosPage() {
   return (
-    <div className="relative overflow-hidden px-6 py-20">
+    <div className="relative min-h-[70vh] overflow-hidden px-6 py-20">
       <GradientBlobs />
 
       <div className="relative mx-auto max-w-3xl space-y-6">
