@@ -15,6 +15,12 @@ export function isAllowedInstitutionalEmail(email: string | null | undefined) {
 }
 
 export const { handlers, signIn, signOut, auth } = NextAuth({
+  // Auth.js solo confía en el host de la request automáticamente en Vercel.
+  // En Amplify (y cualquier otra plataforma detrás de un proxy/CDN) hay que
+  // confirmarlo explícitamente, o rechaza la sesión con "UntrustedHost".
+  // AUTH_URL ya fija el dominio esperado; esto solo autoriza al servidor a
+  // usar el host real de la request entrante.
+  trustHost: true,
   providers: [
     Google({
       authorization: {
