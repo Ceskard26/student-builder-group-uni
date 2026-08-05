@@ -80,18 +80,21 @@ export async function createEnrollment(
 }
 
 /**
- * El estudiante modifica su elección de curso mientras la ventana está
- * abierta. Esto NO dispara un nuevo correo de confirmación (la confirmación
- * solo se envía al crear la inscripción).
+ * El estudiante modifica su inscripción mientras la ventana está abierta
+ * (curso, URL de Credly, nombre completo o código de alumno). Esto NO
+ * dispara un nuevo correo de confirmación (la confirmación solo se envía
+ * al crear la inscripción).
  *
- * El estado vuelve a `submitted` porque cualquier cambio de curso o de URL
- * de Credly invalida la revisión anterior del administrador: la inscripción
- * debe volver a la cola de revisión.
+ * El estado vuelve a `submitted` porque cualquier cambio invalida la
+ * revisión anterior del administrador: la inscripción debe volver a la
+ * cola de revisión.
  */
-export async function updateEnrollmentCourse(
+export async function updateEnrollmentDetails(
   email: string,
   cohortId: string,
   updates: {
+    fullName: string;
+    studentCode: string;
     courseId: string;
     hasPrerequisite: boolean;
     credlyUrl?: string;
@@ -103,9 +106,11 @@ export async function updateEnrollmentCourse(
       TableName: TABLE_NAME,
       Key: { PK: userPk(email), SK: enrollmentSk(cohortId) },
       UpdateExpression:
-        "SET courseId = :courseId, hasPrerequisite = :hasPrerequisite, credlyUrl = :credlyUrl, updatedAt = :updatedAt, #status = :status, gsi1pk = :status, gsi1sk = :now",
+        "SET fullName = :fullName, studentCode = :studentCode, courseId = :courseId, hasPrerequisite = :hasPrerequisite, credlyUrl = :credlyUrl, updatedAt = :updatedAt, #status = :status, gsi1pk = :status, gsi1sk = :now",
       ExpressionAttributeNames: { "#status": "status" },
       ExpressionAttributeValues: {
+        ":fullName": updates.fullName,
+        ":studentCode": updates.studentCode,
         ":courseId": updates.courseId,
         ":hasPrerequisite": updates.hasPrerequisite,
         ":credlyUrl": updates.credlyUrl ?? null,

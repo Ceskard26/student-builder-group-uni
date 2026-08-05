@@ -7,7 +7,7 @@ import { currentCohortId } from "@/lib/db/keys";
 import {
   createEnrollment,
   getEnrollment,
-  updateEnrollmentCourse,
+  updateEnrollmentDetails,
 } from "@/lib/db/enrollments";
 import { sendConfirmationEmail } from "@/lib/email/send";
 
@@ -120,7 +120,9 @@ export async function POST(request: Request) {
     );
   }
 
-  await updateEnrollmentCourse(email, cohortId, {
+  await updateEnrollmentDetails(email, cohortId, {
+    fullName: fullName.trim(),
+    studentCode: studentCode.trim(),
     courseId,
     hasPrerequisite,
     credlyUrl: finalCredlyUrl,
